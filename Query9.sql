@@ -1,5 +1,5 @@
---most rented film in Canada 
-SELECT f.title AS movietitle, COUNT(f.film_id) AS film_count
+--most rented film in Canada (Top 10)
+SELECT f.title AS movietitle, COUNT(f.film_id) AS rental_count
 FROM film f
 JOIN inventory i ON f.film_id = i.film_id
 JOIN rental r ON i.inventory_id = r.inventory_id
@@ -9,4 +9,4 @@ JOIN city c ON a.city_id=c.city_id
 JOIN country co ON c.country_id=co.country_id
 WHERE co.country='Canada'
 GROUP BY f.film_id
-ORDER BY film_count DESC;
+ORDER BY rental_count DESC LIMIT 10;
